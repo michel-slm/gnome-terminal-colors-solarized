@@ -1,9 +1,14 @@
-Solarized Colorscheme for Gnome Terminal
+Solarized Colorscheme for MATE Terminal
 ========================================
 
-Scripts for setting the Solarized color set with Gnome Terminal. To get nicely
+Scripts for setting the Solarized color set with MATE Terminal. To get nicely
 colored directory listings, you will also need to set up a [dircolors solarised
 color theme].
+
+This is a fork from 
+[gnome-terminal-solarized](https://github.com/Anthony25/gnome-terminal-colors-solarized) 
+with minimal edits to enable it to work in MATE. Original porting done by 
+[michel-slm](https://github.com/michel-slm/gnome-terminal-colors-solarized)
 
 Colors
 ------
@@ -23,10 +28,10 @@ Solarized repository].
 Installation and usage
 ----------------------
 
-To be able to uninstall, we highly recommend that you create a new Gnome
-Terminal profile, using the menus in Gnome Terminal.
+To be able to uninstall, we highly recommend that you create a new MATE
+Terminal profile, using the menus in MATE Terminal.
 
-You need the `dconf` command (if you run a recent Gnome version). With Ubuntu,
+You need the `dconf` command (if you run a recent MATE version). With Ubuntu,
 this can be installed by running
 
     $ sudo apt-get install dconf-cli
@@ -37,30 +42,48 @@ Then you can run the installation script:
 
 And just follow the instructions.
 
+The `set_dark.sh` and `set_light.sh` scripts in the original repo are not 
+supported for MATE.
+
 Uninstall
 ---------
 
-Change to another profile in Gnome Terminal, then remove the Solarized profile
+Change to another profile in MATE Terminal, then remove the Solarized profile
 by running:
 
-### Gnome 3.6 or lower
+### MATE 1.6 or lower
 
-    $ rm -r ~/.gconf/apps/gnome-terminal/profiles/Solarized/
+    $ rm -r ~/.gconf/apps/mate-terminal/profiles/Solarized/
+    $ gconftool-2 --recursive-unset /apps/mate-terminal
 
-### Gnome 3.8 or higher
+### MATE 1.6 or higher
 
 Be sure to have the dconf-cli package installed and do:
 
-    $ dconf reset -f /org/gnome/terminal/legacy/profiles:/PROFILE_ID"
+    $ dconf reset -f /org/mate/terminal/profiles/PROFILE_ID"
 
 Replace PROFILE_ID by your profile ID (you can get it in your profile
-configuration in gnome-terminal).
+configuration in mate-terminal).
+
+Themes
+------
+
+Each theme has is own folder in the `colors` dir. It contains the following
+files:
+
+  * bd_color: bold color
+  * bg_color: background color
+  * fg_color: foreground color
+  * palette: list of colors for all standard color codes.
+
+No additional configuration is needed to add a theme, the installation script
+just list at launch the children folders in the `colors` dir.
 
 Contributors
 ------------
 
 * Sigurd Gartmann <sigurdga@sigurdga.no>
-* Anthony Ruhier </Anthony25>
+* Anthony Ruhier <anthony.ruhier@gmail.com>
 * Paul Thomson <captbunzo@gmail.com>
 * Techlive Zheng <techlivezheng@gmail.com>
 * Daniel Graña <dangra@gmail.com>
@@ -79,4 +102,4 @@ colors.
 [Solarized homepage]:   http://ethanschoonover.com/solarized
 [Solarized repository]: https://github.com/altercation/solarized
 [Gnome Terminal Colors Solarized repository]: https://github.com/sigurdga/gnome-terminal-colors-solarized
-[dircolors]: https://github.com/seebi/dircolors-solarized
+[dircolors solarised color theme]: https://github.com/seebi/dircolors-solarized
